@@ -1,4 +1,4 @@
-const STORAGE_KEY = "proofpilot-obligations";
+const STORAGE_KEY = "dueproof-obligations";
 
 const captureInput = document.querySelector("#captureInput");
 const categoryInput = document.querySelector("#categoryInput");

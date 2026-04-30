@@ -20,7 +20,7 @@ Use this when the code is connected to a GitHub repository.
 2. Upload these files.
 3. Connect the repository to Vercel or Netlify.
 4. Every code change can auto-deploy.
-5. Add a custom domain later, such as `proofpilot.ai`.
+5. Add a custom domain later, such as `dueproof.ai`.
 
 ## Why HTTPS Matters
 
