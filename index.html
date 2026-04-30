@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#111827" />
+    <title>ProofPilot - Life Obligation Radar</title>
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" href="icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="icon.svg" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <span class="brand-mark">P</span>
+          <div>
+            <strong>ProofPilot</strong>
+            <small>Life Obligation Radar</small>
+          </div>
+        </div>
+
+        <nav class="nav-list" aria-label="Primary">
+          <a href="#dashboard">Dashboard</a>
+          <a href="#capture">Capture</a>
+          <a href="#obligations">Obligations</a>
+          <a href="#money">Money leaks</a>
+          <a href="#briefing">Briefing</a>
+          <a href="#vault">Vault</a>
+        </nav>
+
+        <div class="trust-card">
+          <strong>Private by default</strong>
+          <p>This prototype analyzes text on this device. Nothing is uploaded.</p>
+        </div>
+      </aside>
+
+      <section class="main-content">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Personal life operator</p>
+            <h1>Never miss the thing that costs you money, time, or peace.</h1>
+          </div>
+          <div class="top-actions">
+            <button class="secondary-button" id="seedButton" type="button">Load demo</button>
+            <button class="install-button" id="installButton" type="button" hidden>Install app</button>
+          </div>
+        </header>
+
+        <section class="hero-strip" id="dashboard">
+          <div>
+            <span>Today</span>
+            <strong id="todayCount">0</strong>
+            <p>things need attention</p>
+          </div>
+          <div>
+            <span>Money at risk</span>
+            <strong id="moneyAtRisk">$0</strong>
+            <p>from bills, fees, renewals, or returns</p>
+          </div>
+          <div>
+            <span>Deadline risk</span>
+            <strong id="highestRisk">Clear</strong>
+            <p>based on urgency and impact</p>
+          </div>
+          <div>
+            <span>Resolved</span>
+            <strong id="resolvedCount">0</strong>
+            <p>closed life admin loops</p>
+          </div>
+        </section>
+
+        <section class="command-center" id="capture">
+          <div class="panel capture-panel">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Capture anything</p>
+                <h2>Paste an email, bill, notice, school form, warranty, reminder, or message.</h2>
+              </div>
+              <button class="secondary-button" id="clearButton" type="button">Reset</button>
+            </div>
+
+            <textarea id="captureInput" placeholder="Example: Your internet plan renews on May 12 for $89.99. Cancel by May 9 to avoid charges. Reference INV-4302."></textarea>
+
+            <div class="capture-controls">
+              <label>
+                Category
+                <select id="categoryInput">
+                  <option value="auto">Auto detect</option>
+                  <option value="bill">Bill or payment</option>
+                  <option value="subscription">Subscription</option>
+                  <option value="return">Return or refund</option>
+                  <option value="appointment">Appointment</option>
+                  <option value="school">School or family</option>
+                  <option value="housing">Rent or housing</option>
+                  <option value="travel">Travel document</option>
+                  <option value="work">Work or government</option>
+                </select>
+              </label>
+
+              <label>
+                Owner
+                <select id="ownerInput">
+                  <option>Me</option>
+                  <option>Family</option>
+                  <option>Work</option>
+                  <option>Home</option>
+                </select>
+              </label>
+
+              <button class="primary-button" id="analyzeButton" type="button">Analyze and track</button>
+            </div>
+          </div>
+
+          <div class="panel operator-panel" id="briefing">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Operator briefing</p>
+                <h2>What matters, what is missing, and what to do next.</h2>
+              </div>
+            </div>
+            <div class="brief-card" id="briefCard">
+              <strong>No active briefing yet</strong>
+              <p>Add a life-admin item to generate a practical action plan.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="feature-grid">
+          <article class="panel feature-panel">
+            <h3>Capture-first AI</h3>
+            <p>Starts from screenshots, emails, notices, receipts, and messy text instead of making users write perfect prompts.</p>
+          </article>
+          <article class="panel feature-panel">
+            <h3>Deadline radar</h3>
+            <p>Finds dates, money, cancellation windows, follow-ups, and risk level before something becomes expensive.</p>
+          </article>
+          <article class="panel feature-panel">
+            <h3>Action engine</h3>
+            <p>Creates reply drafts, call scripts, missing-info checklists, and a resolution path for every obligation.</p>
+          </article>
+          <article class="panel feature-panel">
+            <h3>Family operating layer</h3>
+            <p>Organizes obligations by owner so one person can help a household, parent, student, or small team.</p>
+          </article>
+        </section>
+
+        <section class="two-column">
+          <div class="panel" id="obligations">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Obligation radar</p>
+                <h2>Open loops</h2>
+              </div>
+              <select id="filterInput" aria-label="Filter obligations">
+                <option value="all">All</option>
+                <option value="urgent">Urgent</option>
+                <option value="money">Money risk</option>
+                <option value="today">Today</option>
+                <option value="resolved">Resolved</option>
+              </select>
+            </div>
+            <div class="obligation-list" id="obligationList"></div>
+          </div>
+
+          <div class="panel" id="money">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Money leak detector</p>
+                <h2>Charges, renewals, fees, and refunds</h2>
+              </div>
+            </div>
+            <div class="money-list" id="moneyList"></div>
+          </div>
+        </section>
+
+        <section class="two-column">
+          <div class="panel">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Daily mission</p>
+                <h2>What to do next</h2>
+              </div>
+            </div>
+            <ol class="mission-list" id="missionList"></ol>
+          </div>
+
+          <div class="panel" id="vault">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Proof vault</p>
+                <h2>Key facts extracted</h2>
+              </div>
+            </div>
+            <div class="vault-list" id="vaultList"></div>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <template id="obligationTemplate">
+      <article class="obligation-card">
+        <div class="card-head">
+          <span class="risk-pill"></span>
+          <button class="icon-button resolve-button" type="button" title="Mark resolved">Done</button>
+        </div>
+        <h3></h3>
+        <p class="summary"></p>
+        <div class="meta-row"></div>
+        <div class="action-box"></div>
+      </article>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>
